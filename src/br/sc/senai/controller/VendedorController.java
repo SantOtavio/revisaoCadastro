@@ -1,5 +1,6 @@
 package br.sc.senai.controller;
 
+import br.sc.senai.exceptions.EmailNaoCadastradoException;
 import br.sc.senai.model.entities.Vendedor;
 import br.sc.senai.model.services.VendedorService;
 
@@ -12,8 +13,8 @@ public class VendedorController {
         VendedorService service = new VendedorService();
         try {
             model = service.selecionarPorEmail(email);
-        } catch (SQLException e) {
-            throw new SQLException(e);
+        } catch (RuntimeException e) {
+            throw new EmailNaoCadastradoException();
         }
         return model.validaLogin(senha);
     }

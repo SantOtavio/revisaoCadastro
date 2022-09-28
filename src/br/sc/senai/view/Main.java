@@ -2,6 +2,7 @@ package br.sc.senai.view;
 
 import br.sc.senai.controller.ProdutoController;
 import br.sc.senai.controller.VendedorController;
+import br.sc.senai.exceptions.EmailNaoCadastradoException;
 import br.sc.senai.model.entities.Vendedor;
 
 import java.sql.SQLException;
@@ -24,8 +25,13 @@ public class Main {
 
         VendedorController controller = new VendedorController();
         try {
-            Vendedor vendedor = controller.validaLogin(login, senha);
-            vendedor_cpf = vendedor.getVendedor_cpf();
+            try {
+                Vendedor vendedor = controller.validaLogin(login, senha);
+                vendedor_cpf = vendedor.getVendedor_cpf();
+            } catch (EmailNaoCadastradoException e) {
+                System.out.println("Email não cadastrado");
+                menu_login();
+            }
             menu_menuPrincipal();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

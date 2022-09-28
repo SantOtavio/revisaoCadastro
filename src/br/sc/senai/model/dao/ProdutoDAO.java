@@ -42,14 +42,18 @@ public class ProdutoDAO {
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             stmt.setString(1, cpf);
             try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    System.out.println("############################################");
-                    System.out.println("Quantidade: " + rs.getInt("quantidade"));
-                    System.out.println("Descrição: " + rs.getString("descricao"));
-                    System.out.println("Valor: " + rs.getDouble("valor"));
-                    System.out.println("CPF do vendedor: " + rs.getString("VENDEDORES_cpf"));
-                    System.out.println("############################################");
-                    System.out.println("\n");
+                if (rs.next()) {
+                    do {
+                        System.out.println("############################################");
+                        System.out.println("Quantidade: " + rs.getInt("quantidade"));
+                        System.out.println("Descrição: " + rs.getString("descricao"));
+                        System.out.println("Valor: " + rs.getDouble("valor"));
+                        System.out.println("CPF do vendedor: " + rs.getString("VENDEDORES_cpf"));
+                        System.out.println("############################################");
+                        System.out.println("\n");
+                    } while (rs.next());
+                } else {
+                    throw new SemProdutosDoVendedorException();
                 }
             } catch (SQLException e) {
                 throw new ErroAoBuscarProdutosNoBancoException();

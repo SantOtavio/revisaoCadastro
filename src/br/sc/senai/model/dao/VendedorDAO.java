@@ -9,6 +9,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Classe responsável por realizar as operações de CRUD no banco de dados
+ * relacionadas a Vendedor
+ */
 public class VendedorDAO {
 
     Connection conexao;
@@ -17,6 +21,11 @@ public class VendedorDAO {
         conexao = new ConexaoFactory().connectionBD();
     }
 
+    /**
+     * Método para retornar um vendedor a partir de seu email *Do VendedorDAO*
+     * @param email
+     * @throws SQLException
+     */
     public Vendedor selecionarPorEmail(String email) {
         String sql = "SELECT * FROM vendedores WHERE email = ?";
         try (PreparedStatement statement = conexao.prepareStatement(sql)) {
@@ -35,6 +44,11 @@ public class VendedorDAO {
         throw new RuntimeException("Algo deu ruim");
     }
 
+    /**
+     * Método para extrair um vendedor do banco de dados e transformá-lo em um objeto *Do VendedorDAO*
+     * @param rs
+     * @throws SQLException
+     */
     public Vendedor extrairObjeto(ResultSet rs) throws SQLException {
         try {
             return new VendedorFactory().getVendedores(

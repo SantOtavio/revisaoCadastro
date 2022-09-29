@@ -9,6 +9,14 @@ import java.sql.SQLException;
 public class VendedorController {
     Vendedor model;
 
+    /**
+     * *Método que verifica se as informações passadas pelo usuário no login correspondem a algum usuário cadastrado no banco de dados
+     * @param email
+     * @param senha
+     * @return
+     * @throws SQLException
+     * @throws EmailNaoCadastradoException
+     */
     public Vendedor validaLogin(String email, String senha) throws SQLException {
         VendedorService service = new VendedorService();
         try {

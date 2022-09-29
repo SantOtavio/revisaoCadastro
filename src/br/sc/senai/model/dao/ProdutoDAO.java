@@ -11,13 +11,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Classe responsável por realizar as operações de CRUD no banco de dados
+ * relacionadas a produtos
+ */
 public class ProdutoDAO {
     private Connection conexao;
-
     public ProdutoDAO() {
         this.conexao = new ConexaoFactory().connectionBD();
     }
 
+    /**
+     * Método que insere um produto no banco de dados *Do ProdutoDAO*
+     * @param produto
+     * @throws ErroInserirPessoaException
+     */
     public void inserir(Produto produto) {
         String sql = "INSERT INTO produtos(quantidade, descricao, valor, VENDEDORES_cpf) VALUES (?,?,?,?)";
 
@@ -36,6 +44,13 @@ public class ProdutoDAO {
         }
     }
 
+    /**
+     * Método que busca todos os produtos de um vendedor no banco de dados *Do ProdutoDAO*
+     * @param cpf
+     * @return
+     * @throws ErroAoBuscarProdutosNoBancoException
+     * @throws SemProdutosDoVendedorException
+     */
     public void listar(String cpf) {
         String sql = "SELECT * FROM produtos where VENDEDORES_cpf = ?";
 

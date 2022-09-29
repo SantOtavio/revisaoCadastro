@@ -8,6 +8,17 @@ import br.sc.senai.model.entities.Vendedor;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+/**
+ * O sistema a seguir é um sistema simples, que tem como objetivo cadastrar produtos e listar os produtos cadastrados pelos vendedores.
+ * O sistema possui um menu com as seguintes opções:
+ * 1 - Cadastrar produto
+ * 2 - Listar produtos
+ * O usuário fará login no sistema com seu email e senha, detalhe que é impossível registrar um vendedor no sistema, o registro deve ser feito diretamente no banco de dados.
+ * O vendedor poderá cadastrar produtos e listar os produtos cadastrados por ele.
+ * O sistema possui uma classe de teste, que é a Main, onde o usuário fará login e escolherá uma das opções do menu.
+ * O sistema utiliza o design pattern MVC, onde a classe Main é a View, a classe ProdutoController e VendedorController é o Controller e a classe ProdutoDAO e VendedorDAO é o Model.
+ *
+ */
 public class Main {
     static Scanner sc = new Scanner(System.in);
     static String vendedor_cpf;

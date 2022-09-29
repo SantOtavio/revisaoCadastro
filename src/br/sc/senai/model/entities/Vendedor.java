@@ -1,5 +1,10 @@
 package br.sc.senai.model.entities;
 
+/**
+ * Classe que representa um vendedor, possuí os atributos:
+ * nome, cpf, email, senha
+ * @author Senai
+ */
 public class Vendedor {
     private String vendedor_cpf, vendedor_nome, vendedor_email, vendedor_senha;
 

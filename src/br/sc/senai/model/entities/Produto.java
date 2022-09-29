@@ -1,5 +1,10 @@
 package br.sc.senai.model.entities;
 
+/**
+ * Classe que representa um Produto, possuí os atributos:
+ * descricao, quantidade, preco, vendedor_cpf
+ * @author 2019
+ */
 public class Produto {
     private String produto_descricao;
     private Integer produto_quantidade;
